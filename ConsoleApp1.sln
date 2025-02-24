@@ -1,25 +1,48 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1.csproj", "{A50594EB-5C51-42AB-B030-62B0D0779F08}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A50594EB-5C51-42AB-B030-62B0D0779F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A50594EB-5C51-42AB-B030-62B0D0779F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A50594EB-5C51-42AB-B030-62B0D0779F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A50594EB-5C51-42AB-B030-62B0D0779F08}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4724D1EC-D3E5-4DBF-A83B-5FB438CE634D}
-	EndGlobalSection
-EndGlobal
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Prompt the user to input two numbers
+        Console.Write("Enter the first number: ");
+        string input1 = Console.ReadLine();
+
+        Console.Write("Enter the second number: ");
+        string input2 = Console.ReadLine();
+
+        // Call the method to perform the division
+        PerformDivision(input1, input2);
+    }
+
+    static void PerformDivision(string num1, string num2)
+    {
+        try
+        {
+            // Convert the input strings to integers
+            int number1 = int.Parse(num1);
+            int number2 = int.Parse(num2);
+
+            // Perform the division
+            int result = number1 / number2;
+
+            // Output the result
+            Console.WriteLine($"The result of {number1} divided by {number2} is: {result}");
+        }
+        catch (FormatException)
+        {
+            // Handle invalid input (non-numeric characters)
+            Console.WriteLine("Error: Both inputs must be valid integers.");
+        }
+        catch (DivideByZeroException)
+        {
+            // Handle division by zero
+            Console.WriteLine("Error: Division by zero is not allowed.");
+        }
+        catch (Exception ex)
+        {
+            // Catch any other unexpected exceptions
+            Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+        }
+    }
+}
